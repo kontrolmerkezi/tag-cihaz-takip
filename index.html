@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>TAG Cihaz Yönetim Sistemi (Sheets Entegre)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; }
+    h1 { text-align: center; color: #b91c1c; }
+    .container { max-width: 1100px; margin: auto; }
+    .forms { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+    .form-box { background: white; padding: 20px; border-radius: 10px; flex: 1; min-width: 300px; box-shadow: 0 2px 5px #ddd; }
+    input, select, button {
+      width: 100%; padding: 8px; margin: 6px 0; border: 1px solid #ccc; border-radius: 4px;
+    }
+    button { background: #dc2626; color: white; cursor: pointer; }
+    button:hover { background: #a4161a; }
+    table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #7f1d1d; color: white; }
+    #toast {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #333; color: white; padding: 10px 20px;
+      border-radius: 6px; display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>TAG Cihaz Yönetim ve Takip Sistemi</h1>
+
+  <div class="forms">
+    <div class="form-box">
+      <h2>Yeni TAG Cihaz Girişi</h2>
+      <input id="isim" placeholder="İsim">
+      <input id="soyisim" placeholder="Soyisim">
+      <input id="etiket" placeholder="Etiket">
+      <select id="durum">
+        <option>SAĞLAM</option>
+        <option>ARIZALI</option>
+        <option>KAYIP</option>
+        <option>AKTİF</option>
+        <option>MİSAFİR</option>
+      </select>
+      <button onclick="cihazEkle()">Kaydet</button>
+    </div>
+    <div class="form-box">
+      <h2>Arama</h2>
+      <input id="arama" placeholder="İsim, soyisim veya etiket" oninput="listele()">
+      <button onclick="verileriYenile()">Sheets'ten Yenile</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>İsim</th><th>Soyisim</th><th>Etiket</th><th>Durum</th></tr>
+    </thead>
+    <tbody id="liste"></tbody>
+  </table>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const apiUrl = "https://script.google.com/macros/s/AKfycbxzCrCKZ_be5fEZNV16Vnos6fqsU_HKD5qx7PC9pJ9Jc2D96ul0wAteSNZU8ku2GuLhog/exec";
+let cihazlar = [];
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.innerText = msg;
+  toast.style.display = "block";
+  setTimeout(() => toast.style.display = "none", 3000);
+}
+
+async function verileriYenile() {
+  try {
+    const res = await fetch(apiUrl);
+    cihazlar = await res.json();
+    listele();
+    showToast("Veriler yüklendi");
+  } catch (e) {
+    showToast("Veri çekilemedi");
+  }
+}
+
+function listele() {
+  const arama = document.getElementById("arama").value.toLowerCase();
+  const tbody = document.getElementById("liste");
+  tbody.innerHTML = "";
+  cihazlar.filter(c => (
+    (c["isim"] || "").toLowerCase().includes(arama) ||
+    (c["soyisim"] || "").toLowerCase().includes(arama) ||
+    (c["etiket"] || "").toLowerCase().includes(arama)
+  )).forEach(c => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${c["isim"] || ""}</td>
+      <td>${c["soyisim"] || ""}</td>
+      <td>${c["etiket"] || ""}</td>
+      <td>${c["cihaz durumu"] || ""}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function cihazEkle() {
+  const isim = document.getElementById("isim").value.trim();
+  const soyisim = document.getElementById("soyisim").value.trim();
+  const etiket = document.getElementById("etiket").value.trim();
+  const durum = document.getElementById("durum").value;
+
+  if (!isim || !soyisim || !etiket) {
+    return showToast("Tüm alanlar doldurulmalı");
+  }
+
+  cihazlar.push({ isim, soyisim, etiket, "cihaz durumu": durum });
+  fetch(apiUrl, {
+    method: "POST",
+    body: JSON.stringify(cihazlar)
+  }).then(() => {
+    showToast("Cihaz eklendi ve kaydedildi");
+    document.getElementById("isim").value = "";
+    document.getElementById("soyisim").value = "";
+    document.getElementById("etiket").value = "";
+    document.getElementById("durum").value = "SAĞLAM";
+    listele();
+  }).catch(() => {
+    showToast("Kaydetme hatası");
+  });
+}
+
+window.onload = verileriYenile;
+</script>
+</body>
+</html>
