@@ -109,525 +109,27 @@
   </div>
 </div>
 <script>
-let cihazlar = [
-  { etiket: "78763", isim: "Serkan OKUT", durum: "AKTİF" },
-  { etiket: "79991", isim: "Semih DEMİRTAŞ", durum: "AKTİF" },
-  { etiket: "89829", isim: "Burak TOKGÖZ", durum: "AKTİF" },
-  { etiket: "89976", isim: "Ayhan KURUKUZ", durum: "AKTİF" },
-  { etiket: "91960", isim: "Burhan KAYA", durum: "AKTİF" },
-  { etiket: "93063", isim: "Eray ACAR", durum: "AKTİF" },
-  { etiket: "100079", isim: "Emrah YALÇIN", durum: "AKTİF" },
-  { etiket: "100116", isim: "Hüseyin BOZACIOĞLU", durum: "AKTİF" },
-  { etiket: "100122", isim: "Hakan ÇEVİK", durum: "AKTİF" },
-  { etiket: "100136", isim: "Görkem KESKİN", durum: "AKTİF" },
-  { etiket: "100137", isim: "Tugay AK", durum: "AKTİF" },
-  { etiket: "123971", isim: "Umut YILDIRIM", durum: "AKTİF" },
-  { etiket: "100181", isim: "Harun ULUDAĞ", durum: "AKTİF" },
-  { etiket: "100189", isim: "Haydar GÜNER", durum: "AKTİF" },
-  { etiket: "100220", isim: "İbrahim DURKUN", durum: "AKTİF" },
-  { etiket: "100231", isim: "Abdullah Kerim ÜZÜLMEZ", durum: "AKTİF" },
-  { etiket: "100232", isim: "Mehmet YILDIZ", durum: "AKTİF" },
-  { etiket: "124242", isim: "Ümit AYDIN", durum: "AKTİF" },
-  { etiket: "100255", isim: "Erkan ERARSLAN", durum: "AKTİF" },
-  { etiket: "100267", isim: "Nizamettin ARSLAN", durum: "AKTİF" },
-  { etiket: "100270", isim: "Savaş BAŞ", durum: "AKTİF" },
-  { etiket: "100276", isim: "Cevdet SAYGI", durum: "AKTİF" },
-  { etiket: "100280", isim: "Cevat YILDIZHAN", durum: "AKTİF" },
-  { etiket: "100281", isim: "Volkan KEÇECİ", durum: "AKTİF" },
-  { etiket: "100283", isim: "Hüseyin İNCE", durum: "AKTİF" },
-  { etiket: "100286", isim: "Eray AÇIKGÖZ", durum: "AKTİF" },
-  { etiket: "100290", isim: "Yaşar GÜNER", durum: "AKTİF" },
-  { etiket: "100301", isim: "Recep DERİN", durum: "AKTİF" },
-  { etiket: "100328", isim: "Oğuzhan YILMAZ", durum: "AKTİF" },
-  { etiket: "100329", isim: "Gökhan GÜLDALİ", durum: "AKTİF" },
-  { etiket: "100330", isim: "Okan ÇEVİK", durum: "AKTİF" },
-  { etiket: "100336", isim: "Faruk KARA", durum: "AKTİF" },
-  { etiket: "100631", isim: "Muhammed BOZACIOĞLU", durum: "AKTİF" },
-  { etiket: "100636", isim: "Mustafa TURHAN", durum: "AKTİF" },
-  { etiket: "100637", isim: "Yusuf ÇİV", durum: "AKTİF" },
-  { etiket: "100639", isim: "Ergin ALTUNTAŞ", durum: "AKTİF" },
-  { etiket: "100640", isim: "İbrahim BAŞARAN", durum: "AKTİF" },
-  { etiket: "100641", isim: "Mesut GEDİK", durum: "AKTİF" },
-  { etiket: "100642", isim: "Samet AYDIN", durum: "AKTİF" },
-  { etiket: "100644", isim: "Utku OKTAY", durum: "AKTİF" },
-  { etiket: "100648", isim: "İdris KARAKAŞ", durum: "AKTİF" },
-  { etiket: "100652", isim: "Mustafa KAYA", durum: "AKTİF" },
-  { etiket: "100654", isim: "Sezai BAYSAL", durum: "AKTİF" },
-  { etiket: "100657", isim: "Mehmet ÜNAL", durum: "AKTİF" },
-  { etiket: "100659", isim: "Hüseyin CİVELEK", durum: "AKTİF" },
-  { etiket: "100660", isim: "Hüseyin KESKİN", durum: "AKTİF" },
-  { etiket: "100661", isim: "Emir DURKUT", durum: "AKTİF" },
-  { etiket: "100663", isim: "Turan DÖNMEZ", durum: "AKTİF" },
-  { etiket: "100664", isim: "Erkan ÇAY", durum: "AKTİF" },
-  { etiket: "100665", isim: "Murat KALAYCI", durum: "AKTİF" },
-  { etiket: "100666", isim: "Emre CİN", durum: "AKTİF" },
-  { etiket: "100668", isim: "Haydar GÖKMEN", durum: "AKTİF" },
-  { etiket: "100669", isim: "Tolga KARACA", durum: "AKTİF" },
-  { etiket: "100672", isim: "Yunus ERYİĞİT", durum: "AKTİF" },
-  { etiket: "100673", isim: "Aykut KASIM", durum: "AKTİF" },
-  { etiket: "100676", isim: "Adem DUYAR", durum: "AKTİF" },
-  { etiket: "100677", isim: "Tolga BÖKRÜ", durum: "AKTİF" },
-  { etiket: "100678", isim: "Bekir PASLI", durum: "AKTİF" },
-  { etiket: "100681", isim: "Akın ALTUN", durum: "AKTİF" },
-  { etiket: "100682", isim: "Ahmet ÇEVİK", durum: "AKTİF" },
-  { etiket: "100685", isim: "Olcay OKUMUŞ", durum: "AKTİF" },
-  { etiket: "100689", isim: "Ferdi OKUT", durum: "AKTİF" },
-  { etiket: "100691", isim: "Ali DANDEM", durum: "AKTİF" },
-  { etiket: "100694", isim: "Gökhan TABAN", durum: "AKTİF" },
-  { etiket: "100695", isim: "Esat ÖLMEZ", durum: "AKTİF" },
-  { etiket: "100696", isim: "Mesut AKKAYA", durum: "AKTİF" },
-  { etiket: "100699", isim: "Ersin ÖZBAY", durum: "AKTİF" },
-  { etiket: "100700", isim: "Ayşe Buse KOÇAK", durum: "AKTİF" },
-  { etiket: "100701", isim: "Ercan ÇETİNKAYA", durum: "AKTİF" },
-  { etiket: "100702", isim: "İlker KAYA", durum: "AKTİF" },
-  { etiket: "100703", isim: "İsmail ESKİ", durum: "AKTİF" },
-  { etiket: "100706", isim: "Atakan CAYMAZ", durum: "AKTİF" },
-  { etiket: "100707", isim: "Erdal YILMAZ", durum: "AKTİF" },
-  { etiket: "100708", isim: "Ergin KILIÇ", durum: "AKTİF" },
-  { etiket: "100710", isim: "Muhammet GÜNER", durum: "AKTİF" },
-  { etiket: "100711", isim: "Faruk AK", durum: "AKTİF" },
-  { etiket: "100714", isim: "Faruk AYDEMİR", durum: "AKTİF" },
-  { etiket: "100727", isim: "Eyüp GÜNER", durum: "AKTİF" },
-  { etiket: "100731", isim: "Mehmet ULUDAĞ", durum: "AKTİF" },
-  { etiket: "100732", isim: "Ali ARSLAN", durum: "AKTİF" },
-  { etiket: "100733", isim: "Zafer CEVİZ", durum: "AKTİF" },
-  { etiket: "100735", isim: "Yaşar YILMAZ", durum: "AKTİF" },
-  { etiket: "100736", isim: "Tanju ÖZKILIÇ", durum: "AKTİF" },
-  { etiket: "100738", isim: "Cenker YILMAZ", durum: "AKTİF" },
-  { etiket: "100740", isim: "Nazif ALDIRMAZ", durum: "AKTİF" },
-  { etiket: "100741", isim: "Alihan ÇİLİNGİR", durum: "AKTİF" },
-  { etiket: "100744", isim: "Özkan YAVUZ", durum: "AKTİF" },
-  { etiket: "100747", isim: "Şeref ÖZCAN", durum: "AKTİF" },
-  { etiket: "100748", isim: "Atakan YILDIZHAN", durum: "AKTİF" },
-  { etiket: "100750", isim: "Şaban ARDIÇ", durum: "AKTİF" },
-  { etiket: "100754", isim: "Ferdi DEMİR", durum: "AKTİF" },
-  { etiket: "100758", isim: "Adem DUMAN", durum: "AKTİF" },
-  { etiket: "124445", isim: "Ramazan KARAMAN", durum: "AKTİF" },
-  { etiket: "100762", isim: "Ömer CANBAZ", durum: "AKTİF" },
-  { etiket: "100764", isim: "Hikmet KÜÇÜK", durum: "AKTİF" },
-  { etiket: "100768", isim: "Cem KARAMAN", durum: "AKTİF" },
-  { etiket: "100770", isim: "Ferdi SATUKOĞLU", durum: "AKTİF" },
-  { etiket: "100771", isim: "Orhan ERDOĞAN", durum: "AKTİF" },
-  { etiket: "100777", isim: "Sadettin KARAHAN", durum: "AKTİF" },
-  { etiket: "100778", isim: "Vural ÖZCAN", durum: "AKTİF" },
-  { etiket: "100779", isim: "Muhammet AKÇAY", durum: "AKTİF" },
-  { etiket: "100780", isim: "Ersin TURAN", durum: "AKTİF" },
-  { etiket: "100783", isim: "Turgut KORKMAZ", durum: "AKTİF" },
-  { etiket: "100784", isim: "Muhammet Ali YAMAN", durum: "AKTİF" },
-  { etiket: "100791", isim: "Ali YAVUZ", durum: "AKTİF" },
-  { etiket: "100792", isim: "Coşkun CİVELEK", durum: "AKTİF" },
-  { etiket: "100793", isim: "Ali GÜNER", durum: "AKTİF" },
-  { etiket: "100794", isim: "Adem ÖZDEMİROGLU", durum: "AKTİF" },
-  { etiket: "100796", isim: "Barış ERDOĞAN", durum: "AKTİF" },
-  { etiket: "100801", isim: "Yasin YILDIZ", durum: "AKTİF" },
-  { etiket: "100803", isim: "Atakan EROĞLU", durum: "AKTİF" },
-  { etiket: "100805", isim: "Umut BULUT", durum: "AKTİF" },
-  { etiket: "100806", isim: "Ozan AYDIN", durum: "AKTİF" },
-  { etiket: "100807", isim: "Mustafa KOLAY", durum: "AKTİF" },
-  { etiket: "100809", isim: "Osman YARDIM", durum: "AKTİF" },
-  { etiket: "100811", isim: "Kadir KIZILARSLAN", durum: "AKTİF" },
-  { etiket: "100814", isim: "Bayram ARSLAN", durum: "AKTİF" },
-  { etiket: "100819", isim: "Ramazan DALKILIÇ", durum: "AKTİF" },
-  { etiket: "113607", isim: "Serkan KARADENİZ", durum: "AKTİF" },
-  { etiket: "113650", isim: "Ümray AKGÜL", durum: "AKTİF" },
-  { etiket: "113667", isim: "Hasan Can SEVER", durum: "AKTİF" },
-  { etiket: "113674", isim: "Gökhan ATABEY", durum: "AKTİF" },
-  { etiket: "113681", isim: "İbrahim CAYMAZ", durum: "AKTİF" },
-  { etiket: "113742", isim: "Recep KESGİN", durum: "AKTİF" },
-  { etiket: "113778", isim: "Mesut ALACA", durum: "AKTİF" },
-  { etiket: "113800", isim: "Doğuş KARABAŞ", durum: "AKTİF" },
-  { etiket: "113808", isim: "Ercan TOPÇU", durum: "AKTİF" },
-  { etiket: "113815", isim: "Murat ERYİĞİT", durum: "AKTİF" },
-  { etiket: "113833", isim: "İhsan MUTLU", durum: "AKTİF" },
-  { etiket: "113853", isim: "Mustafa ARICI", durum: "AKTİF" },
-  { etiket: "113900", isim: "Emre ARSLAN", durum: "AKTİF" },
-  { etiket: "113958", isim: "Mesut ÇEVİK", durum: "AKTİF" },
-  { etiket: "113964", isim: "Sedat YILMAZ", durum: "AKTİF" },
-  { etiket: "114016", isim: "Ayhan CORA", durum: "AKTİF" },
-  { etiket: "114081", isim: "Ufuk MARANKOZ", durum: "AKTİF" },
-  { etiket: "114143", isim: "Yaşar KESKİN", durum: "AKTİF" },
-  { etiket: "114144", isim: "İbrahim YILMAZ", durum: "AKTİF" },
-  { etiket: "114158", isim: "Canmert AKMAN", durum: "AKTİF" },
-  { etiket: "114261", isim: "Emre ÖZDEMİR", durum: "AKTİF" },
-  { etiket: "114269", isim: "Yaşar SEVER", durum: "AKTİF" },
-  { etiket: "114328", isim: "Yunus OKUT", durum: "AKTİF" },
-  { etiket: "114380", isim: "Talip YAVUZARSLAN", durum: "AKTİF" },
-  { etiket: "114403", isim: "Muharrem BURGU", durum: "AKTİF" },
-  { etiket: "114456", isim: "Yusuf Emre ARSLAN", durum: "AKTİF" },
-  { etiket: "114469", isim: "Doğukan ATABEY", durum: "AKTİF" },
-  { etiket: "114503", isim: "Dursun KILIÇ", durum: "AKTİF" },
-  { etiket: "114508", isim: "İsmail DOĞAN", durum: "AKTİF" },
-  { etiket: "114539", isim: "Hasan AYDIN", durum: "AKTİF" },
-  { etiket: "114553", isim: "Engin ERDOĞDU", durum: "AKTİF" },
-  { etiket: "114566", isim: "Ahmet TÜRKOĞLU", durum: "AKTİF" },
-  { etiket: "114567", isim: "Yılmaz SARIKAN", durum: "AKTİF" },
-  { etiket: "114578", isim: "Talha YAVAŞ", durum: "AKTİF" },
-  { etiket: "114621", isim: "Ümit KARADENİZ", durum: "AKTİF" },
-  { etiket: "114628", isim: "Ömer Utku CANDAN", durum: "AKTİF" },
-  { etiket: "114629", isim: "Huzeyfe ERYİĞİT", durum: "AKTİF" },
-  { etiket: "114638", isim: "Ahmet CURA", durum: "AKTİF" },
-  { etiket: "114722", isim: "Abdullah BOZER", durum: "AKTİF" },
-  { etiket: "114763", isim: "İsmail Şentürk ŞENER", durum: "AKTİF" },
-  { etiket: "114790", isim: "Mustafa VURMAZ", durum: "AKTİF" },
-  { etiket: "114798", isim: "İlhan KALYONCU", durum: "AKTİF" },
-  { etiket: "114805", isim: "Ersan ÇİMEN", durum: "AKTİF" },
-  { etiket: "114834", isim: "Cafer ALDIRTMAZ", durum: "AKTİF" },
-  { etiket: "120398", isim: "Ünal DİLAVER", durum: "AKTİF" },
-  { etiket: "120452", isim: "Yasin KÜÇÜK", durum: "AKTİF" },
-  { etiket: "120468", isim: "Çınar BAŞOL", durum: "AKTİF" },
-  { etiket: "125601", isim: "Bekir ALTUNTAŞ", durum: "AKTİF" },
-  { etiket: "123715", isim: "Mehmet İNCE", durum: "AKTİF" },
-  { etiket: "120473", isim: "Erol OKUT", durum: "AKTİF" },
-  { etiket: "120475", isim: "Semih ERDEM", durum: "AKTİF" },
-  { etiket: "120487", isim: "Muhammet DEMİRAL", durum: "AKTİF" },
-  { etiket: "120489", isim: "Fikret ESKİ", durum: "AKTİF" },
-  { etiket: "120492", isim: "Kadir BOZOĞLU", durum: "AKTİF" },
-  { etiket: "120497", isim: "Hamza AKSIN", durum: "AKTİF" },
-  { etiket: "120522", isim: "Mustafa NADUL", durum: "AKTİF" },
-  { etiket: "120533", isim: "Salim SEVME", durum: "AKTİF" },
-  { etiket: "120539", isim: "Levent BAYRAKTAR", durum: "AKTİF" },
-  { etiket: "120570", isim: "Abdullah DÖNMEZ", durum: "AKTİF" },
-  { etiket: "120573", isim: "Hüseyin TÜRKOĞLU", durum: "AKTİF" },
-  { etiket: "125607", isim: "Emre EGELİ", durum: "AKTİF" },
-  { etiket: "120632", isim: "Fetullah TEKİN", durum: "AKTİF" },
-  { etiket: "120711", isim: "Yalçın ÇEVİK", durum: "AKTİF" },
-  { etiket: "120716", isim: "Fatih ÇINAR", durum: "AKTİF" },
-  { etiket: "125573", isim: "Muhammet AKKAN", durum: "AKTİF" },
-  { etiket: "120735", isim: "Yusuf GÖRMÜŞ", durum: "AKTİF" },
-  { etiket: "120743", isim: "Hasan Yasin TURA", durum: "AKTİF" },
-  { etiket: "120750", isim: "Özkan SARKIN", durum: "AKTİF" },
-  { etiket: "120752", isim: "Durdu YAVUZ", durum: "AKTİF" },
-  { etiket: "120757", isim: "Erdal ARSLANBOĞA", durum: "AKTİF" },
-  { etiket: "120759", isim: "Ferdi ÖZMEN", durum: "AKTİF" },
-  { etiket: "120765", isim: "İsmail TÜRKYILMAZ", durum: "AKTİF" },
-  { etiket: "120767", isim: "Gökhan SUSAM", durum: "AKTİF" },
-  { etiket: "120776", isim: "Yasin KELEŞ", durum: "AKTİF" },
-  { etiket: "120777", isim: "Naci Barış KALYONCU", durum: "AKTİF" },
-  { etiket: "120778", isim: "Mert ÇEVİK", durum: "AKTİF" },
-  { etiket: "120783", isim: "Zekeriya ERDEM", durum: "AKTİF" },
-  { etiket: "120785", isim: "Hasan GÖKTAŞ", durum: "AKTİF" },
-  { etiket: "120787", isim: "Özer BAYOĞLU", durum: "AKTİF" },
-  { etiket: "120792", isim: "Cüneyt ÖZMEN", durum: "AKTİF" },
-  { etiket: "120793", isim: "Samet TÜTÜ", durum: "AKTİF" },
-  { etiket: "120794", isim: "Sezgin ÇINAR", durum: "AKTİF" },
-  { etiket: "120821", isim: "Tayfun KAYA", durum: "AKTİF" },
-  { etiket: "120823", isim: "Musa SEVİM", durum: "AKTİF" },
-  { etiket: "120843", isim: "Serkan ODABAŞI", durum: "AKTİF" },
-  { etiket: "120853", isim: "Muharrem AYDIN", durum: "AKTİF" },
-  { etiket: "120857", isim: "Birol ADIYAMAN", durum: "AKTİF" },
-  { etiket: "120859", isim: "Emrah KAYA", durum: "AKTİF" },
-  { etiket: "120869", isim: "Şükrü YALÇIN", durum: "AKTİF" },
-  { etiket: "120871", isim: "İsa KILIÇ", durum: "AKTİF" },
-  { etiket: "120876", isim: "Hasret ATABEY", durum: "AKTİF" },
-  { etiket: "120879", isim: "Emre ÇELİK", durum: "AKTİF" },
-  { etiket: "120882", isim: "Metin OĞUZ", durum: "AKTİF" },
-  { etiket: "120886", isim: "Eyüp ŞENGÜN", durum: "AKTİF" },
-  { etiket: "120891", isim: "Tarık ÖLMEZ", durum: "AKTİF" },
-  { etiket: "124935", isim: "Yetiş KESKİN", durum: "AKTİF" },
-  { etiket: "120902", isim: "Berkay TOKGÖZ", durum: "AKTİF" },
-  { etiket: "120908", isim: "Yücel SEVER", durum: "AKTİF" },
-  { etiket: "120912", isim: "Sinan BEKMEZCİ", durum: "AKTİF" },
-  { etiket: "120921", isim: "Muharrem ÖZER", durum: "AKTİF" },
-  { etiket: "120970", isim: "Ömer ÖZDEMİR", durum: "AKTİF" },
-  { etiket: "120978", isim: "Ayhan SEZGİN", durum: "AKTİF" },
-  { etiket: "121024", isim: "Zafer IŞIK", durum: "AKTİF" },
-  { etiket: "100715", isim: "Dursun ÇİVİ", durum: "AKTİF" },
-  { etiket: "121034", isim: "Turgay KARAKUŞ", durum: "AKTİF" },
-  { etiket: "121038", isim: "Ahmet Cem ALTIOK", durum: "AKTİF" },
-  { etiket: "121081", isim: "Ferdi GEVAM", durum: "AKTİF" },
-  { etiket: "121107", isim: "Ali ERDOĞAN", durum: "AKTİF" },
-  { etiket: "121181", isim: "Sebahattin KARTAL", durum: "AKTİF" },
-  { etiket: "121197", isim: "Muzaffer GÖKMEN", durum: "AKTİF" },
-  { etiket: "121199", isim: "Şadan KIZILARSLAN", durum: "AKTİF" },
-  { etiket: "121203", isim: "Mehmet KILIÇARSLAN", durum: "AKTİF" },
-  { etiket: "121204", isim: "Mustafa GÜNER", durum: "AKTİF" },
-  { etiket: "121208", isim: "Ufuk AYDIN", durum: "AKTİF" },
-  { etiket: "121216", isim: "Ümit ADIYAMAN", durum: "AKTİF" },
-  { etiket: "121224", isim: "Muzaffer BAYRAM", durum: "AKTİF" },
-  { etiket: "121230", isim: "Erhan GÜLGÜN", durum: "AKTİF" },
-  { etiket: "121304", isim: "Özkan ÖĞÜT", durum: "AKTİF" },
-  { etiket: "122173", isim: "Hakan BEKAR", durum: "AKTİF" },
-  { etiket: "121309", isim: "Nazım ARSLAN", durum: "AKTİF" },
-  { etiket: "121316", isim: "Selahattin ÇANKAYA", durum: "AKTİF" },
-  { etiket: "121319", isim: "Murat KÖMÜRCÜ", durum: "AKTİF" },
-  { etiket: "121322", isim: "İbrahim ÇETİNKILIÇ", durum: "AKTİF" },
-  { etiket: "121332", isim: "Demirhan İLİK", durum: "AKTİF" },
-  { etiket: "121333", isim: "Muhammet AYDOĞAN", durum: "AKTİF" },
-  { etiket: "121346", isim: "Sinan ULUSOY", durum: "AKTİF" },
-  { etiket: "121351", isim: "Nazım BAŞARAN", durum: "AKTİF" },
-  { etiket: "121353", isim: "Adem AKDAĞ", durum: "AKTİF" },
-  { etiket: "121406", isim: "Sadettin AVCI", durum: "AKTİF" },
-  { etiket: "121409", isim: "Erdem ÇEVİK", durum: "AKTİF" },
-  { etiket: "124723", isim: "Vahdet CANDAN", durum: "AKTİF" },
-  { etiket: "121428", isim: "Murat DEMİRTAŞ", durum: "AKTİF" },
-  { etiket: "121438", isim: "Tuncay DİLAVER", durum: "AKTİF" },
-  { etiket: "121448", isim: "Gökhan ÖZTÜRK", durum: "AKTİF" },
-  { etiket: "121458", isim: "Mustafa YILDIZ", durum: "AKTİF" },
-  { etiket: "121524", isim: "Yüksel KARABEKTAŞ", durum: "AKTİF" },
-  { etiket: "121525", isim: "Sinan ÖZER", durum: "AKTİF" },
-  { etiket: "121663", isim: "Hüseyin BAŞARAN", durum: "AKTİF" },
-  { etiket: "121817", isim: "Erdi KAVKACI", durum: "AKTİF" },
-  { etiket: "121905", isim: "Ferhat CANDAN", durum: "AKTİF" },
-  { etiket: "121908", isim: "Mutlu AKTAŞ", durum: "AKTİF" },
-  { etiket: "121911", isim: "Cüneyd YAMUDİ", durum: "AKTİF" },
-  { etiket: "121945", isim: "Ersin BOZACIOĞLU", durum: "AKTİF" },
-  { etiket: "121959", isim: "Cihan DİLAVER", durum: "AKTİF" },
-  { etiket: "121971", isim: "Muzaffer ERSOY", durum: "AKTİF" },
-  { etiket: "121984", isim: "Şenol TİKİCİ", durum: "AKTİF" },
-  { etiket: "121987", isim: "Yiğit DEĞER", durum: "AKTİF" },
-  { etiket: "121993", isim: "Evren KARABEKTAŞ", durum: "AKTİF" },
-  { etiket: "122006", isim: "Nusret ATABEY", durum: "AKTİF" },
-  { etiket: "122064", isim: "Soner TEKİN", durum: "AKTİF" },
-  { etiket: "122087", isim: "Ramazan TEZEREN", durum: "AKTİF" },
-  { etiket: "122089", isim: "Hakan KURŞUN", durum: "AKTİF" },
-  { etiket: "122095", isim: "Aziz KORKMAZ", durum: "AKTİF" },
-  { etiket: "122096", isim: "Recep ÇAYIRLI", durum: "AKTİF" },
-  { etiket: "122097", isim: "Sait ŞANLIOĞLU", durum: "AKTİF" },
-  { etiket: "125149", isim: "Tolga GÜNEY", durum: "AKTİF" },
-  { etiket: "122158", isim: "Ercan GÜNER", durum: "AKTİF" },
-  { etiket: "122163", isim: "İsmet SEZGİN", durum: "AKTİF" },
-  { etiket: "122166", isim: "Hamza ÖZSARAÇ", durum: "AKTİF" },
-  { etiket: "122185", isim: "Özcan SEVER", durum: "AKTİF" },
-  { etiket: "122198", isim: "Sedat KAYABAŞ", durum: "AKTİF" },
-  { etiket: "122200", isim: "Yunus YORULMAZ", durum: "AKTİF" },
-  { etiket: "122213", isim: "Fatih BAŞYİĞİT", durum: "AKTİF" },
-  { etiket: "122214", isim: "Uğur KARABULUT", durum: "AKTİF" },
-  { etiket: "122223", isim: "Doğan SARIKAN", durum: "AKTİF" },
-  { etiket: "122234", isim: "Ramazan ÇETİN", durum: "AKTİF" },
-  { etiket: "122260", isim: "Ozan AKBAŞ", durum: "AKTİF" },
-  { etiket: "122268", isim: "Durdu TÜKENMEZ", durum: "AKTİF" },
-  { etiket: "122269", isim: "Ali ALTUNBAŞ", durum: "AKTİF" },
-  { etiket: "122280", isim: "Serkan ATASOY", durum: "AKTİF" },
-  { etiket: "122288", isim: "Atalay TAŞKIN", durum: "AKTİF" },
-  { etiket: "122295", isim: "Hamza ÖZKAN", durum: "AKTİF" },
-  { etiket: "122298", isim: "Özgür KARADAĞ", durum: "AKTİF" },
-  { etiket: "122309", isim: "Şükrü BAYRAKTAR", durum: "AKTİF" },
-  { etiket: "122312", isim: "Gökhan KARTAL", durum: "AKTİF" },
-  { etiket: "122319", isim: "Emre BEYTEKİN", durum: "AKTİF" },
-  { etiket: "122320", isim: "İlyas KORKMAZ", durum: "AKTİF" },
-  { etiket: "122321", isim: "Ünal DÖNMEZ", durum: "AKTİF" },
-  { etiket: "122328", isim: "Sezgin AYKANAT", durum: "AKTİF" },
-  { etiket: "122337", isim: "Kaan AYDEMİR", durum: "AKTİF" },
-  { etiket: "122349", isim: "Murat DAĞKIRAN", durum: "AKTİF" },
-  { etiket: "122352", isim: "Ramazan BAŞARAN", durum: "AKTİF" },
-  { etiket: "122365", isim: "DİZEL LOKOMOTİF", durum: "İş Makinaları" },
-  { etiket: "122367", isim: "Uğur ANDİÇ", durum: "AKTİF" },
-  { etiket: "122369", isim: "Mustafa PEÇEN", durum: "AKTİF" },
-  { etiket: "122377", isim: "Bilgin BAŞYİĞİT", durum: "AKTİF" },
-  { etiket: "122394", isim: "Uğur YILDIRIM", durum: "AKTİF" },
-  { etiket: "122398", isim: "Ömer DEMİRCAN", durum: "AKTİF" },
-  { etiket: "122400", isim: "Hasan GÜLTEKİN", durum: "AKTİF" },
-  { etiket: "122402", isim: "Adem OKUT", durum: "AKTİF" },
-  { etiket: "122408", isim: "Ahmet AKBULUT", durum: "AKTİF" },
-  { etiket: "122409", isim: "Süleyman ARI", durum: "AKTİF" },
-  { etiket: "122410", isim: "Berkant BURSALI", durum: "AKTİF" },
-  { etiket: "122411", isim: "Mücahid AYHAN", durum: "AKTİF" },
-  { etiket: "122421", isim: "Hüseyin KOCAMAN", durum: "AKTİF" },
-  { etiket: "122423", isim: "Mesut GÜMÜŞ", durum: "AKTİF" },
-  { etiket: "122454", isim: "Ramazan AYDIN", durum: "AKTİF" },
-  { etiket: "122465", isim: "Şafak ABADANLI", durum: "AKTİF" },
-  { etiket: "122474", isim: "Metin MEŞE", durum: "AKTİF" },
-  { etiket: "122891", isim: "İdris YILDIZHAN", durum: "AKTİF" },
-  { etiket: "122915", isim: "Harun YAĞMUROĞLU", durum: "AKTİF" },
-  { etiket: "123095", isim: "Yaşar ARKAN", durum: "AKTİF" },
-  { etiket: "124171", isim: "Kadir TEMEL", durum: "AKTİF" },
-  { etiket: "124203", isim: "İlhan KARAMEŞE", durum: "AKTİF" },
-  { etiket: "124423", isim: "Onur AKIN", durum: "AKTİF" },
-  { etiket: "124478", isim: "Ersan MUTLU", durum: "AKTİF" },
-  { etiket: "124630", isim: "Cihad ERYİĞİT", durum: "AKTİF" },
-  { etiket: "124760", isim: "Tunahan KESKİN", durum: "AKTİF" },
-  { etiket: "124763", isim: "Şahin KURBAN", durum: "AKTİF" },
-  { etiket: "125617", isim: "Gökhan KAPLAN", durum: "AKTİF" },
-  { etiket: "124794", isim: "Ozan YALÇIN", durum: "AKTİF" },
-  { etiket: "124812", isim: "Musa ÖNDER", durum: "AKTİF" },
-  { etiket: "124931", isim: "Muhammet SEVİNDİK", durum: "AKTİF" },
-  { etiket: "124933", isim: "Ercan GÜNAYDIN", durum: "AKTİF" },
-  { etiket: "124956", isim: "Kenan Sefer YILDIZHAN", durum: "AKTİF" },
-  { etiket: "125436", isim: "Eser SEVİM", durum: "AKTİF" },
-  { etiket: "125438", isim: "Selçuk EYRİLMEZ", durum: "AKTİF" },
-  { etiket: "125478", isim: "Emre YALÇIN", durum: "AKTİF" },
-  { etiket: "125508", isim: "Orhan TİRYAKİ", durum: "AKTİF" },
-  { etiket: "125595", isim: "Ramazan AYKANAT", durum: "AKTİF" },
-  { etiket: "125596", isim: "Samet KARAÇAM", durum: "AKTİF" },
-  { etiket: "125616", isim: "Semih DEMİRTAŞ", durum: "AKTİF" },
-  { etiket: "125620", isim: "Latifcan BAYAR", durum: "AKTİF" },
-  { etiket: "125637", isim: "Alican KESKİNSOY", durum: "AKTİF" },
-  { etiket: "125660", isim: "Emre TÜRKOĞLU", durum: "AKTİF" },
-  { etiket: "100307", isim: "ALA GRUP 7 nan", durum: "ALAGRUP" },
-  { etiket: "100635", isim: "ALA GRUP 6 nan", durum: "ALAGRUP" },
-  { etiket: "100662", isim: "ALA GRUP 2 nan", durum: "ALAGRUP" },
-  { etiket: "100674", isim: "ALA GRUP 1 nan", durum: "ALAGRUP" },
-  { etiket: "100729", isim: "ALA GRUP 9 nan", durum: "ALAGRUP" },
-  { etiket: "100767", isim: "ALA GRUP 8 nan", durum: "ALAGRUP" },
-  { etiket: "100781", isim: "ALA GRUP 5 nan", durum: "ALAGRUP" },
-  { etiket: "100810", isim: "ALA GRUP 4 nan", durum: "ALAGRUP" },
-  { etiket: "120474", isim: "ALA GRUP 3 nan", durum: "ALAGRUP" },
-  { etiket: "121030", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121090", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120471", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "76968", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "78680", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100182", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100196", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100226", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100241", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100265", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100474", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100632", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100633", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100638", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100643", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100645", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100646", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100647", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100651", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100653", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100688", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100712", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100724", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100734", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100737", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100742", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100765", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "125440", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "125530", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100769", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100773", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100775", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100776", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100785", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100788", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100789", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100790", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100798", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100799", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100812", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100815", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "113868", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "113918", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "114028", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "114312", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "114470", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "114491", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120444", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120459", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120892", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120895", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120915", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120996", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121016", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121320", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121408", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121454", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121873", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121972", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122202", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122267", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122376", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122407", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122444", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122455", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122459", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100177", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100761", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121306", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100246", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "121416", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120897", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "122105", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120731", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120470", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "120576", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "124769", isim: "KONTROL MERKEZİ", durum: "ARIZALI" },
-  { etiket: "100100", isim: "Müjdat ALTUNKAYA", durum: "ERMADEN" },
-  { etiket: "100667", isim: "ERMADEN MİSAFİR 4", durum: "ERMADEN" },
-  { etiket: "100675", isim: "ERMADEN MİSAFİR 1", durum: "ERMADEN" },
-  { etiket: "100722", isim: "Burak TEZCAN", durum: "ERMADEN" },
-  { etiket: "100723", isim: "ERMADEN MİSAFİR 6", durum: "ERMADEN" },
-  { etiket: "100739", isim: "Ahmet YAVUZ", durum: "ERMADEN" },
-  { etiket: "100756", isim: "Emel YILMAZ", durum: "ERMADEN" },
-  { etiket: "100757", isim: "Aybike BAŞDOĞAN", durum: "ERMADEN" },
-  { etiket: "100763", isim: "Adem KAYMAK", durum: "ERMADEN" },
-  { etiket: "100774", isim: "Alican ÜYÜM", durum: "ERMADEN" },
-  { etiket: "100787", isim: "Mehmet ÇULLUK", durum: "ERMADEN" },
-  { etiket: "100795", isim: "Mücahit GÜNAYDIN", durum: "ERMADEN" },
-  { etiket: "100800", isim: "NUH BAŞ", durum: "ERMADEN" },
-  { etiket: "100808", isim: "Serkan TURAN", durum: "ERMADEN" },
-  { etiket: "100816", isim: "ERMADEN YÖNETİCİ 1", durum: "ERMADEN" },
-  { etiket: "100818", isim: "ERMADEN YÖNETİCİ 2", durum: "ERMADEN" },
-  { etiket: "114253", isim: "NUH BAŞ", durum: "ERMADEN" },
-  { etiket: "120744", isim: "İlhan ÇAVUŞOĞLU", durum: "ERMADEN" },
-  { etiket: "120865", isim: "ERMADEN MİSAFİR 2", durum: "ERMADEN" },
-  { etiket: "121012", isim: "Murat ÇINAR", durum: "ERMADEN" },
-  { etiket: "121215", isim: "ERMADEN MİSAFİR 3", durum: "ERMADEN" },
-  { etiket: "122275", isim: "OĞUZHAN KILAVUZ nan", durum: "ERMADEN" },
-  { etiket: "122451", isim: "Emel YILMAZ", durum: "ERMADEN" },
-  { etiket: "122886", isim: "Oğuzhan KILAVUZ", durum: "ERMADEN" },
-  { etiket: "100751", isim: "SHUNTİNG 2", durum: "İş Makinaları" },
-  { etiket: "100817", isim: "SHUNTING 1", durum: "İş Makinaları" },
-  { etiket: "113670", isim: "HAVALI SHUNTİNG", durum: "İş Makinaları" },
-  { etiket: "114001", isim: "MONORAY SCHARF DZK2200", durum: "İş Makinaları" },
-  { etiket: "114173", isim: "MONORAY FERRİT DLZ110F-II / 1", durum: "İş Makinaları" },
-  { etiket: "118189", isim: "EBZ 4 nan", durum: "İş Makinaları" },
-  { etiket: "118192", isim: "EBZ 3 nan", durum: "İş Makinaları" },
-  { etiket: "122470", isim: "MONORAY SCHARF DZK1800", durum: "İş Makinaları" },
-  { etiket: "78724", isim: "AKÜLÜ LOKOMOTİF", durum: "İş Makinaları" },
-  { etiket: "123078", isim: "MONORAY FERRİT DLZ110F-II / 2", durum: "İş Makinaları" },
-  { etiket: "100658", isim: "MURAT ERYİĞİT", durum: "KAYIP" },
-  { etiket: "100690", isim: "HAKAN ALTUNSOY", durum: "KAYIP" },
-  { etiket: "100693", isim: "RAMAZAN KARAMAN", durum: "KAYIP" },
-  { etiket: "100766", isim: "EMRE TÜRKOĞLU", durum: "KAYIP" },
-  { etiket: "100772", isim: "ŞAHİN AYIK", durum: "KAYIP" },
-  { etiket: "114201", isim: "İDRİS AKAY", durum: "KAYIP" },
-  { etiket: "121245", isim: "İHSAN MUTLU", durum: "KAYIP" },
-  { etiket: "122175", isim: "ATALAY TAŞKIN", durum: "KAYIP" },
-  { etiket: "122314", isim: "TAYFUN AKYÜZ", durum: "KAYIP" },
-  { etiket: "100268", isim: "ERHAN BEY", durum: "MİSAFİR" },
-  { etiket: "110316", isim: "FATİH BEY", durum: "MİSAFİR" },
-  { etiket: "120733", isim: "Levent YILMAZ", durum: "MİSAFİR" },
-  { etiket: "122894", isim: "Vakkas KARAOĞLU", durum: "MİSAFİR" },
-  { etiket: "124952", isim: "BAHADIR MİSAFİR 1", durum: "MİSAFİR" },
-  { etiket: "124989", isim: "BAHADIR MİSAFİR 3", durum: "MİSAFİR" },
-  { etiket: "125608", isim: "BAHADIR MİSAFİR 5", durum: "MİSAFİR" },
-  { etiket: "125642", isim: "BAHADIR MİSAFİR 4", durum: "MİSAFİR" },
-  { etiket: "126129", isim: "BAHADIR MİSAFİR 2", durum: "MİSAFİR" },
-  { etiket: "100656", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "100716", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "120603", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "120779", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "122492", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "123678", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "100274", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "123910", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "124468", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "124483", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "124791", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "124796", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "124841", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "125487", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "126083", isim: "SAĞLAM nan", durum: "SAĞLAM" },
-  { etiket: "95498", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100179", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100649", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100655", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100670", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100686", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100687", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100697", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100720", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100725", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100759", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "100782", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "120758", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "120769", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "121240", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-  { etiket: "122906", isim: "KONTROL MERKEZİ", durum: "TAMİR EDİLEMEYEN" },
-];
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxkGA5bXd9rcGmWH7YsHzTbD1qXOnhX9Aq9RFvIgV4u/dev";
 
+let cihazlar = [];
 let logGecmisi = [];
+
+// Başlangıçta verileri çek
+fetch(GOOGLE_SHEET_URL)
+  .then(res => res.json())
+  .then(data => {
+    cihazlar = data;
+    verileriKaydet();
+    listele();
+  })
+  .catch(err => console.error("Google Sheets verisi alınamadı:", err));
+
+// LocalStorage'a yaz
 function verileriKaydet() {
   localStorage.setItem("cihazlar", JSON.stringify(cihazlar));
 }
+
+// LOG ekle
 function logEkle(metin, geriAlFonksiyonu = null) {
   const log = document.getElementById("logList");
   const li = document.createElement("li");
@@ -640,7 +142,6 @@ function logEkle(metin, geriAlFonksiyonu = null) {
       geriAlFonksiyonu();
       verileriKaydet();
       listele();
-
       li.remove();
       alert("İşlem geri alındı.");
     };
@@ -649,228 +150,127 @@ function logEkle(metin, geriAlFonksiyonu = null) {
   log.prepend(li);
   logGecmisi.push({ metin, geriAlFonksiyonu });
 }
+
+// Listeyi ekrana bas
+function listele() {
+  const tbody = document.getElementById("liste");
+  const arama = document.getElementById("arama").value.toLowerCase();
+  tbody.innerHTML = "";
+  cihazlar
+    .filter(c => c.etiket.toLowerCase().includes(arama) || c.isim.toLowerCase().includes(arama))
+    .forEach(c => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${c.etiket}</td><td>${c.isim}</td><td>${c.durum}</td>`;
+      tbody.appendChild(tr);
+    });
+}
+
+// Yeni cihaz ekle
 function sifirTagEkle() {
-  const etiketInput = document.getElementById("yeniTagEtiket");
-  const durumSelect = document.getElementById("yeniTagDurum");
-  const etiket = etiketInput.value.trim();
-  const durum = durumSelect.value;
+  const etiket = document.getElementById("yeniTagEtiket").value.trim();
+  const durum = document.getElementById("yeniTagDurum").value;
   if (!etiket) return alert("Etiket giriniz.");
   if (cihazlar.some(c => c.etiket === etiket)) return alert("Bu etiket zaten mevcut!");
   const yeniCihaz = { etiket, isim: "KONTROL MERKEZİ", durum };
   cihazlar.push(yeniCihaz);
   verileriKaydet();
   listele();
- durumOzetTablosunuGuncelle();
-durumOzetiniGuncelle();
-  logEkle(`Yeni cihaz eklendi: ${etiket} - ${durum}`, () => {
-    cihazlar = cihazlar.filter(c => c.etiket !== etiket);
+  logEkle(`${etiket} etiketiyle yeni cihaz eklendi.`);
+  fetch(GOOGLE_SHEET_URL, {
+    method: "POST",
+    body: JSON.stringify(yeniCihaz)
   });
-  etiketInput.value = "";
-  durumSelect.value = "SAĞLAM";
-  alert("Cihaz başarıyla eklendi.");
 }
+
+// Personel atama
 function personelAta() {
   const yeniEtiket = document.getElementById("yeniEtiket").value.trim();
   const yeniIsim = document.getElementById("yeniIsim").value.trim();
   const eskiEtiket = document.getElementById("eskiEtiket").value.trim();
   const eskiDurum = document.getElementById("eskiDurum").value;
-  if (!yeniEtiket || !yeniIsim) return alert("Yeni etiket ve isim giriniz.");
-  if (cihazlar.some(c => c.etiket === yeniEtiket)) return alert("Bu etiket zaten kullanılıyor!");
-  const yeniCihaz = { etiket: yeniEtiket, isim: yeniIsim, durum: "AKTİF" };
-  cihazlar.push(yeniCihaz);
-  let eskiCihaz = null;
+
+  if (!yeniEtiket || !yeniIsim) return alert("Yeni etiket ve isim zorunludur.");
+
   if (eskiEtiket) {
-    const index = cihazlar.findIndex(c => c.etiket === eskiEtiket);
-    if (index !== -1) {
-      eskiCihaz = { ...cihazlar[index] };
-      cihazlar[index].isim = "KONTROL MERKEZİ";
-      cihazlar[index].durum = eskiDurum || "SAĞLAM";
+    const eskiCihaz = cihazlar.find(c => c.etiket === eskiEtiket);
+    if (eskiCihaz) {
+      const oncekiDurum = eskiCihaz.durum;
+      eskiCihaz.durum = eskiDurum || "KAYIP";
+      eskiCihaz.isim = "KONTROL MERKEZİ";
+      fetch(GOOGLE_SHEET_URL, {
+        method: "POST",
+        body: JSON.stringify(eskiCihaz)
+      });
     }
   }
+
+  let cihaz = cihazlar.find(c => c.etiket === yeniEtiket);
+  if (cihaz) {
+    cihaz.isim = yeniIsim;
+    cihaz.durum = "AKTİF";
+  } else {
+    cihaz = { etiket: yeniEtiket, isim: yeniIsim, durum: "AKTİF" };
+    cihazlar.push(cihaz);
+  }
+
   verileriKaydet();
   listele();
-durumOzetiniGuncelle();
-  logEkle(`Personel atandı: ${yeniIsim} (${yeniEtiket})`, () => {
-    cihazlar = cihazlar.filter(c => c.etiket !== yeniEtiket);
-    if (eskiCihaz) cihazlar.push(eskiCihaz);
+  logEkle(`${yeniIsim} kişisine ${yeniEtiket} etiketi atandı.`);
+
+  fetch(GOOGLE_SHEET_URL, {
+    method: "POST",
+    body: JSON.stringify(cihaz)
   });
-  document.getElementById("yeniEtiket").value = "";
-  document.getElementById("yeniIsim").value = "";
-  document.getElementById("eskiEtiket").value = "";
-  document.getElementById("eskiDurum").value = "";
-  alert("Personel ataması tamamlandı.");
 }
+
+// Cihaz tamiri
 function cihaziTamirEt() {
   const etiket = document.getElementById("tamirEtiket").value.trim();
   const cihaz = cihazlar.find(c => c.etiket === etiket);
-  if (!cihaz) return alert("Cihaz bulunamadı.");
+  if (!cihaz) return alert("Etiket bulunamadı.");
   const oncekiDurum = cihaz.durum;
   cihaz.durum = "SAĞLAM";
+  cihaz.isim = "KONTROL MERKEZİ";
   verileriKaydet();
   listele();
-durumOzetiniGuncelle();
-  logEkle(`${etiket} etiketi SAĞLAM olarak güncellendi.`, () => {
-    cihaz.durum = oncekiDurum;
+  logEkle(`${etiket} etiketiyle cihaz SAĞLAM yapıldı.`);
+
+  fetch(GOOGLE_SHEET_URL, {
+    method: "POST",
+    body: JSON.stringify(cihaz)
   });
-  document.getElementById("tamirEtiket").value = "";
-  alert("Cihaz tamir edildi.");
 }
+
+// Personel pasifleştirme
 function ayrilaniPasiflestir() {
   const etiket = document.getElementById("ayrilanEtiket").value.trim();
   const yeniDurum = document.getElementById("ayrilanDurum").value;
   const cihaz = cihazlar.find(c => c.etiket === etiket);
-  if (!cihaz) return alert("Cihaz bulunamadı.");
-  const oncekiCihaz = { ...cihaz };
-  cihaz.isim = "KONTROL MERKEZİ";
+  if (!cihaz) return alert("Etiket bulunamadı.");
   cihaz.durum = yeniDurum;
+  cihaz.isim = "KONTROL MERKEZİ";
   verileriKaydet();
   listele();
-durumOzetiniGuncelle();
-  logEkle(`${etiket} etiketi pasifleştirildi.`, () => {
-    Object.assign(cihaz, oncekiCihaz);
+  logEkle(`${etiket} etiketiyle cihaz ${yeniDurum} yapıldı.`);
+
+  fetch(GOOGLE_SHEET_URL, {
+    method: "POST",
+    body: JSON.stringify(cihaz)
   });
-  document.getElementById("ayrilanEtiket").value = "";
-  document.getElementById("ayrilanDurum").value = "SAĞLAM";
-  alert("Cihaz pasifleştirildi.");
 }
-function listele() {
-  const arama = document.getElementById("arama")?.value.toLowerCase() || "";
-  const tbody = document.getElementById("liste");
-  if (!tbody) return;
-  tbody.innerHTML = "";
-  cihazlar.filter(c => c.etiket.includes(arama) || c.isim.toLowerCase().includes(arama))
-    .forEach(c => {
-      tbody.innerHTML += `<tr><td>${c.etiket}</td><td>${c.isim}</td><td>${c.durum}</td></tr>`;
-    });
-  guncelleGrafik?.();
-}
-window.onload = () => {
-  listele();
-durumOzetiniGuncelle();
-};
 
-
-function guncelleOzetTablo() {
-  const tbody = document.getElementById("durumOzetTablo").querySelector("tbody");
-  tbody.innerHTML = "";
-
-  const durumlar = {};
+// CSV dışa aktar
+function disaAktar() {
+  let csv = "Etiket,İsim,Durum\n";
   cihazlar.forEach(c => {
-    durumlar[c.durum] = (durumlar[c.durum] || 0) + 1;
+    csv += `${c.etiket},${c.isim},${c.durum}\n`;
   });
-
-  const renkler = {
-    "SAĞLAM": "#34d399",
-    "ARIZALI": "#f87171",
-    "KAYIP": "#fbbf24",
-    "AKTİF": "#60a5fa",
-    "ALAGRUP": "#a78bfa",
-    "ERMADEN": "#10b981",
-    "İş Makinaları": "#6366f1",
-    "MİSAFİR": "#f472b6",
-    "TAMİR EDİLEMEYEN": "#9ca3af"
-  };
-
-  Object.entries(durumlar).forEach(([durum, adet]) => {
-    const renk = renkler[durum] || "#e5e7eb";
-    tbody.innerHTML += `
-      <tr>
-        <td style="display: flex; align-items: center; gap: 6px; justify-content: flex-start;">
-          <span style="width: 12px; height: 12px; background: ${renk}; display: inline-block; border-radius: 2px;"></span>
-          ${durum}
-        </td>
-        <td>${adet}</td>
-      </tr>
-    `;
-  });
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "tag_cihaz_listesi.csv";
+  link.click();
 }
-
-function guncelleGrafik() {
-  const durumlar = {};
-  cihazlar.forEach(c => {
-    durumlar[c.durum] = (durumlar[c.durum] || 0) + 1;
-  });
-
-  const ctx = document.getElementById('durumChart').getContext('2d');
-
-  if (window.durumChartInstance) {
-    window.durumChartInstance.destroy();
-  }
-
-  window.durumChartInstance = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: Object.keys(durumlar),
-      datasets: [{
-        label: 'Cihaz Durumları',
-        data: Object.values(durumlar),
-        backgroundColor: [
-          '#34d399', '#f87171', '#fbbf24', '#60a5fa', '#a78bfa',
-          '#10b981', '#6366f1', '#f472b6', '#9ca3af'
-        ],
-        borderColor: '#f9f9f9',
-        borderWidth: 2,
-        hoverOffset: 12
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: false }
-      },
-      animation: {
-        animateRotate: true,
-        duration: 800
-      }
-    }
-  });
-}
-
-function listele() {
-  const arama = document.getElementById("arama").value.toLowerCase();
-  const tbody = document.getElementById("liste");
-  tbody.innerHTML = "";
-  cihazlar.filter(c => c.etiket.includes(arama) || c.isim.toLowerCase().includes(arama))
-    .forEach(c => {
-      tbody.innerHTML += `<tr><td>${c.etiket}</td><td>${c.isim}</td><td>${c.durum}</td></tr>`;
-    });
-  guncelleGrafik();
-  guncelleOzetTablo();
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-  listele();
-});
-
-function durumOzetiniGuncelle() {
-  const ozet = {};
-  cihazlar.forEach(c => {
-    if (!ozet[c.durum]) ozet[c.durum] = 0;
-    ozet[c.durum]++;
-  });
-
-  const tabloBody = document.querySelector("#durumOzetTablo tbody");
-  tabloBody.innerHTML = "";
-
-  let toplam = 0;
-  for (const [durum, adet] of Object.entries(ozet)) {
-    toplam += adet;
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${durum}</td><td>${adet}</td>`;
-    tabloBody.appendChild(tr);
-  }
-
-  // Genel toplam satırı
-  const toplamTr = document.createElement("tr");
-  toplamTr.style.fontWeight = "bold";
-  toplamTr.innerHTML = `<td>Genel Toplam</td><td>${toplam}</td>`;
-  tabloBody.appendChild(toplamTr);
-}
-window.onload = function() {
-  listele();
-  durumOzetiniGuncelle();
-};
-
 </script>
 </body>
 </html>
