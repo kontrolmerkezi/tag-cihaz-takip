@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8"/>
 <title>TAG Cihaz Yönetim ve Takip Sistemi</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -37,99 +38,102 @@
 </head>
 <body>
 <div class="container">
-  <h1>TAG Cihaz Yönetim ve Takip Sistemi</h1>
-  <div class="top-section">
-    <div class="chart-box">
-      <canvas id="durumChart"></canvas>
-    </div>
-    <div class="summary-box">
-      <h2>📄 Durum Özeti</h2>
-      <table class="summary-table" id="durumOzetTablo">
-        <thead>
-          <tr><th>Durum</th><th>Adet</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-  <div class="forms">
-    <div class="section">
-      <h2>📦 Sıfır TAG Cihaz Girişi</h2>
-      <label>Etiket:</label><input id="yeniTagEtiket" type="text">
-      <label>Durum:</label>
-      <select id="yeniTagDurum">
-        <option>SAĞLAM</option>
-        <option>ARIZALI</option>
-        <option>KAYIP</option>
-      </select>
-      <button onclick="sifirTagEkle()">Cihazı Kaydet</button>
-    </div>
-    <div class="section">
-      <h2>👤 Personel TAG Atama</h2>
-      <label>Yeni Etiket:</label><input id="yeniEtiket" type="text">
-      <label>Yeni İsim:</label><input id="yeniIsim" type="text">
-      <label>Eski Etiket (varsa):</label><input id="eskiEtiket" type="text">
-      <label>Eski Durum Ne Oldu?</label>
-      <select id="eskiDurum">
-        <option value="">- Seçiniz -</option>
-        <option>ARIZALI</option>
-        <option>KAYIP</option>
-      </select>
-      <button onclick="personelAta()">Atamayı Tamamla</button>
-    </div>
-    <div class="section">
-      <h2>🛠️ Cihaz Tamir</h2>
-      <label>Etiket:</label><input id="tamirEtiket" type="text">
-      <button onclick="cihaziTamirEt()">SAĞLAM Yap</button>
-    </div>
-    <div class="section">
-      <h2>🚪 İşten Ayrılan Personel</h2>
-      <label>Etiket:</label><input id="ayrilanEtiket" type="text">
-      <label>Yeni Durum:</label>
-      <select id="ayrilanDurum">
-        <option>SAĞLAM</option>
-        <option>ARIZALI</option>
-        <option>KAYIP</option>
-      </select>
-      <button onclick="ayrilaniPasiflestir()">Pasifleştir</button>
-    </div>
-  </div>
-  <div class="section">
-    <h2>📋 Cihaz Listesi</h2>
-    <input type="text" id="arama" placeholder="Etiket veya isim ara..." oninput="listele()">
-    <button onclick="disaAktar()">CSV'ye Aktar</button>
-    <table>
-      <thead><tr><th>Etiket</th><th>İsim</th><th>Durum</th></tr></thead>
-      <tbody id="liste"></tbody>
-    </table>
-  </div>
-  <div class="section">
-    <h2>🕓 İşlem Geçmişi (LOG)</h2>
-    <ul id="logList"></ul>
-  </div>
+<h1>TAG Cihaz Yönetim ve Takip Sistemi</h1>
+<div class="top-section">
+<div class="chart-box">
+<canvas id="durumChart"></canvas>
 </div>
-<script>
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxkGA5bXd9rcGmWH7YsHzTbD1qXOnhX9Aq9RFvIgV4u/dev";
+<div class="summary-box">
+<h2>📄 Durum Özeti</h2>
+<table class="summary-table" id="durumOzetTablo">
+<thead>
+<tr><th>Durum</th><th>Adet</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+<div class="forms">
+<div class="section">
+<h2>📦 Sıfır TAG Cihaz Girişi</h2>
+<label>Etiket:</label><input id="yeniTagEtiket" type="text"/>
+<label>Durum:</label>
+<select id="yeniTagDurum">
+<option>SAĞLAM</option>
+<option>ARIZALI</option>
+<option>KAYIP</option>
+</select>
+<button onclick="sifirTagEkle()">Cihazı Kaydet</button>
+</div>
+<div class="section">
+<h2>👤 Personel TAG Atama</h2>
+<label>Yeni Etiket:</label><input id="yeniEtiket" type="text"/>
+<label>Yeni İsim:</label><input id="yeniIsim" type="text"/>
+<label>Eski Etiket (varsa):</label><input id="eskiEtiket" type="text"/>
+<label>Eski Durum Ne Oldu?</label>
+<select id="eskiDurum">
+<option value="">- Seçiniz -</option>
+<option>ARIZALI</option>
+<option>KAYIP</option>
+</select>
+<button onclick="personelAta()">Atamayı Tamamla</button>
+</div>
+<div class="section">
+<h2>🛠️ Cihaz Tamir</h2>
+<label>Etiket:</label><input id="tamirEtiket" type="text"/>
+<button onclick="cihaziTamirEt()">SAĞLAM Yap</button>
+</div>
+<div class="section">
+<h2>🚪 İşten Ayrılan Personel</h2>
+<label>Etiket:</label><input id="ayrilanEtiket" type="text"/>
+<label>Yeni Durum:</label>
+<select id="ayrilanDurum">
+<option>SAĞLAM</option>
+<option>ARIZALI</option>
+<option>KAYIP</option>
+</select>
+<button onclick="ayrilaniPasiflestir()">Pasifleştir</button>
+</div>
+</div>
+<div class="section">
+<h2>📋 Cihaz Listesi</h2>
+<input id="arama" oninput="listele()" placeholder="Etiket veya isim ara..." type="text"/>
+<button onclick="disaAktar()">CSV'ye Aktar</button>
+<table>
+<thead><tr><th>Etiket</th><th>İsim</th><th>Durum</th></tr></thead>
+<tbody id="liste"></tbody>
+</table>
+</div>
+<div class="section">
+<h2>🕓 İşlem Geçmişi (LOG)</h2>
+<ul id="logList"></ul>
+</div>
+</div>
 
+<script>
+const GOOGLE_SHEET_GET = "https://opensheet.elk.sh/16W1kK3lAbGgKV5vrI90iYVp52ba5O1cTgT77ptYUilY/Sayfa1";
+const GOOGLE_SHEET_POST = "https://script.google.com/macros/s/AKfycbxkGA5bXd9rcGmWH7YsHzTbD1qXOnhX9Aq9RFvIgV4u/dev";
 let cihazlar = [];
 let logGecmisi = [];
 
-// Başlangıçta verileri çek
-fetch(GOOGLE_SHEET_URL)
+fetch(GOOGLE_SHEET_GET)
   .then(res => res.json())
   .then(data => {
-    cihazlar = data;
+    cihazlar = data.map(c => ({
+      etiket: c.etiket,
+      isim: (c.isim || "") + " " + (c.soyisim || ""),
+      durum: c.durum
+    }));
     verileriKaydet();
     listele();
+    ozetGuncelle();
   })
   .catch(err => console.error("Google Sheets verisi alınamadı:", err));
 
-// LocalStorage'a yaz
 function verileriKaydet() {
   localStorage.setItem("cihazlar", JSON.stringify(cihazlar));
 }
 
-// LOG ekle
 function logEkle(metin, geriAlFonksiyonu = null) {
   const log = document.getElementById("logList");
   const li = document.createElement("li");
@@ -142,6 +146,7 @@ function logEkle(metin, geriAlFonksiyonu = null) {
       geriAlFonksiyonu();
       verileriKaydet();
       listele();
+      ozetGuncelle();
       li.remove();
       alert("İşlem geri alındı.");
     };
@@ -151,7 +156,6 @@ function logEkle(metin, geriAlFonksiyonu = null) {
   logGecmisi.push({ metin, geriAlFonksiyonu });
 }
 
-// Listeyi ekrana bas
 function listele() {
   const tbody = document.getElementById("liste");
   const arama = document.getElementById("arama").value.toLowerCase();
@@ -165,7 +169,20 @@ function listele() {
     });
 }
 
-// Yeni cihaz ekle
+function ozetGuncelle() {
+  const tablo = document.getElementById("durumOzetTablo").querySelector("tbody");
+  const sayim = {};
+  cihazlar.forEach(c => {
+    sayim[c.durum] = (sayim[c.durum] || 0) + 1;
+  });
+  tablo.innerHTML = "";
+  for (const [durum, adet] of Object.entries(sayim)) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${durum}</td><td>${adet}</td>`;
+    tablo.appendChild(tr);
+  }
+}
+
 function sifirTagEkle() {
   const etiket = document.getElementById("yeniTagEtiket").value.trim();
   const durum = document.getElementById("yeniTagDurum").value;
@@ -175,29 +192,30 @@ function sifirTagEkle() {
   cihazlar.push(yeniCihaz);
   verileriKaydet();
   listele();
+  ozetGuncelle();
   logEkle(`${etiket} etiketiyle yeni cihaz eklendi.`);
-  fetch(GOOGLE_SHEET_URL, {
+  fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(yeniCihaz)
   });
 }
 
-// Personel atama
 function personelAta() {
   const yeniEtiket = document.getElementById("yeniEtiket").value.trim();
-  const yeniIsim = document.getElementById("yeniIsim").value.trim();
+  const ad = document.getElementById("yeniIsim").value.trim();
+  const soyad = document.getElementById("yeniSoyisim").value.trim();
+  const isim = ad + " " + soyad;
   const eskiEtiket = document.getElementById("eskiEtiket").value.trim();
   const eskiDurum = document.getElementById("eskiDurum").value;
 
-  if (!yeniEtiket || !yeniIsim) return alert("Yeni etiket ve isim zorunludur.");
+  if (!yeniEtiket || !ad || !soyad) return alert("Yeni etiket ve isim soyisim zorunludur.");
 
   if (eskiEtiket) {
     const eskiCihaz = cihazlar.find(c => c.etiket === eskiEtiket);
     if (eskiCihaz) {
-      const oncekiDurum = eskiCihaz.durum;
       eskiCihaz.durum = eskiDurum || "KAYIP";
       eskiCihaz.isim = "KONTROL MERKEZİ";
-      fetch(GOOGLE_SHEET_URL, {
+      fetch(GOOGLE_SHEET_POST, {
         method: "POST",
         body: JSON.stringify(eskiCihaz)
       });
@@ -206,42 +224,39 @@ function personelAta() {
 
   let cihaz = cihazlar.find(c => c.etiket === yeniEtiket);
   if (cihaz) {
-    cihaz.isim = yeniIsim;
+    cihaz.isim = isim;
     cihaz.durum = "AKTİF";
   } else {
-    cihaz = { etiket: yeniEtiket, isim: yeniIsim, durum: "AKTİF" };
+    cihaz = { etiket: yeniEtiket, isim, durum: "AKTİF" };
     cihazlar.push(cihaz);
   }
 
   verileriKaydet();
   listele();
-  logEkle(`${yeniIsim} kişisine ${yeniEtiket} etiketi atandı.`);
-
-  fetch(GOOGLE_SHEET_URL, {
+  ozetGuncelle();
+  logEkle(`${isim} kişisine ${yeniEtiket} etiketi atandı.`);
+  fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(cihaz)
   });
 }
 
-// Cihaz tamiri
 function cihaziTamirEt() {
   const etiket = document.getElementById("tamirEtiket").value.trim();
   const cihaz = cihazlar.find(c => c.etiket === etiket);
   if (!cihaz) return alert("Etiket bulunamadı.");
-  const oncekiDurum = cihaz.durum;
   cihaz.durum = "SAĞLAM";
   cihaz.isim = "KONTROL MERKEZİ";
   verileriKaydet();
   listele();
+  ozetGuncelle();
   logEkle(`${etiket} etiketiyle cihaz SAĞLAM yapıldı.`);
-
-  fetch(GOOGLE_SHEET_URL, {
+  fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(cihaz)
   });
 }
 
-// Personel pasifleştirme
 function ayrilaniPasiflestir() {
   const etiket = document.getElementById("ayrilanEtiket").value.trim();
   const yeniDurum = document.getElementById("ayrilanDurum").value;
@@ -251,15 +266,14 @@ function ayrilaniPasiflestir() {
   cihaz.isim = "KONTROL MERKEZİ";
   verileriKaydet();
   listele();
+  ozetGuncelle();
   logEkle(`${etiket} etiketiyle cihaz ${yeniDurum} yapıldı.`);
-
-  fetch(GOOGLE_SHEET_URL, {
+  fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(cihaz)
   });
 }
 
-// CSV dışa aktar
 function disaAktar() {
   let csv = "Etiket,İsim,Durum\n";
   cihazlar.forEach(c => {
@@ -271,6 +285,5 @@ function disaAktar() {
   link.download = "tag_cihaz_listesi.csv";
   link.click();
 }
-</script>
-</body>
+</script></body>
 </html>
