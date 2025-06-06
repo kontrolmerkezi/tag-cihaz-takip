@@ -34,6 +34,12 @@
   .forms { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; margin-bottom: 20px; }
   .forms .section { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); flex: 1; min-width: 300px; box-sizing: border-box; transition: all 0.3s ease; }
   .forms .section:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+
+.bilgiMesaji {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -62,7 +68,7 @@
 <option>SAĞLAM</option>
 <option>ARIZALI</option>
 <option>KAYIP</option>
-</select>
+</select><div class="bilgiMesaji" id="sifirTagBilgi"></div>
 <button onclick="sifirTagEkle()">Cihazı Kaydet</button>
 </div>
 <div class="section">
@@ -75,12 +81,12 @@
 <option value="">- Seçiniz -</option>
 <option>ARIZALI</option>
 <option>KAYIP</option>
-</select>
+</select><div class="bilgiMesaji" id="personelBilgi"></div>
 <button onclick="personelAta()">Atamayı Tamamla</button>
 </div>
 <div class="section">
 <h2>🛠️ Cihaz Tamir</h2>
-<label>Etiket:</label><input id="tamirEtiket" type="text"/>
+<label>Etiket:</label><input id="tamirEtiket" type="text"/><div class="bilgiMesaji" id="tamirBilgi"></div>
 <button onclick="cihaziTamirEt()">SAĞLAM Yap</button>
 </div>
 <div class="section">
@@ -91,7 +97,7 @@
 <option>SAĞLAM</option>
 <option>ARIZALI</option>
 <option>KAYIP</option>
-</select>
+</select><div class="bilgiMesaji" id="ayrilanBilgi"></div>
 <button onclick="ayrilaniPasiflestir()">Pasifleştir</button>
 </div>
 </div>
@@ -109,24 +115,24 @@
 <ul id="logList"></ul>
 </div>
 </div>
-
 <script>
 const GOOGLE_SHEET_GET = "https://opensheet.elk.sh/16W1kK3lAbGgKV5vrI90iYVp52ba5O1cTgT77ptYUilY/Sayfa1";
 const GOOGLE_SHEET_POST = "https://script.google.com/macros/s/AKfycbxkGA5bXd9rcGmWH7YsHzTbD1qXOnhX9Aq9RFvIgV4u/dev";
 let cihazlar = [];
-let logGecmisi = [];
 
 fetch(GOOGLE_SHEET_GET)
   .then(res => res.json())
   .then(data => {
     cihazlar = data.map(c => ({
       etiket: c.etiket,
-      isim: (c.isim || "") + " " + (c.soyisim || ""),
+      isim: c.isim,
+      soyisim: c.soyisim,
       durum: c.durum
     }));
     verileriKaydet();
     listele();
     ozetGuncelle();
+    grafikCiz();
   })
   .catch(err => console.error("Google Sheets verisi alınamadı:", err));
 
@@ -134,53 +140,18 @@ function verileriKaydet() {
   localStorage.setItem("cihazlar", JSON.stringify(cihazlar));
 }
 
-function logEkle(metin, geriAlFonksiyonu = null) {
-  const log = document.getElementById("logList");
-  const li = document.createElement("li");
-  li.textContent = new Date().toLocaleString() + " - " + metin;
-  if (geriAlFonksiyonu) {
-    const geriBtn = document.createElement("button");
-    geriBtn.textContent = "Geri Al";
-    geriBtn.style.marginLeft = "10px";
-    geriBtn.onclick = () => {
-      geriAlFonksiyonu();
-      verileriKaydet();
-      listele();
-      ozetGuncelle();
-      li.remove();
-      alert("İşlem geri alındı.");
-    };
-    li.appendChild(geriBtn);
-  }
-  log.prepend(li);
-  logGecmisi.push({ metin, geriAlFonksiyonu });
-}
-
 function listele() {
   const tbody = document.getElementById("liste");
   const arama = document.getElementById("arama").value.toLowerCase();
   tbody.innerHTML = "";
   cihazlar
-    .filter(c => c.etiket.toLowerCase().includes(arama) || c.isim.toLowerCase().includes(arama))
+    .filter(c => (c.etiket && c.etiket.toLowerCase().includes(arama)) || 
+                 ((c.isim + " " + c.soyisim).toLowerCase().includes(arama)))
     .forEach(c => {
       const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${c.etiket}</td><td>${c.isim}</td><td>${c.durum}</td>`;
+      tr.innerHTML = `<td>${c.etiket}</td><td>${c.isim} ${c.soyisim}</td><td>${c.durum}</td>`;
       tbody.appendChild(tr);
     });
-}
-
-function ozetGuncelle() {
-  const tablo = document.getElementById("durumOzetTablo").querySelector("tbody");
-  const sayim = {};
-  cihazlar.forEach(c => {
-    sayim[c.durum] = (sayim[c.durum] || 0) + 1;
-  });
-  tablo.innerHTML = "";
-  for (const [durum, adet] of Object.entries(sayim)) {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${durum}</td><td>${adet}</td>`;
-    tablo.appendChild(tr);
-  }
 }
 
 function sifirTagEkle() {
@@ -188,12 +159,15 @@ function sifirTagEkle() {
   const durum = document.getElementById("yeniTagDurum").value;
   if (!etiket) return alert("Etiket giriniz.");
   if (cihazlar.some(c => c.etiket === etiket)) return alert("Bu etiket zaten mevcut!");
-  const yeniCihaz = { etiket, isim: "KONTROL MERKEZİ", durum };
+  const yeniCihaz = { etiket, isim: "KONTROL", soyisim: "MERKEZİ", durum };
   cihazlar.push(yeniCihaz);
   verileriKaydet();
   listele();
+  document.getElementById("yeniTagEtiket").value = "";
+  document.getElementById("yeniTagDurum").value = "SAĞLAM";
+  document.getElementById("sifirTagBilgi").textContent = "✅ Cihaz başarıyla kaydedildi.";
+
   ozetGuncelle();
-  logEkle(`${etiket} etiketiyle yeni cihaz eklendi.`);
   fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(yeniCihaz)
@@ -202,39 +176,29 @@ function sifirTagEkle() {
 
 function personelAta() {
   const yeniEtiket = document.getElementById("yeniEtiket").value.trim();
-  const ad = document.getElementById("yeniIsim").value.trim();
-  const soyad = document.getElementById("yeniSoyisim").value.trim();
-  const isim = ad + " " + soyad;
-  const eskiEtiket = document.getElementById("eskiEtiket").value.trim();
-  const eskiDurum = document.getElementById("eskiDurum").value;
-
-  if (!yeniEtiket || !ad || !soyad) return alert("Yeni etiket ve isim soyisim zorunludur.");
-
-  if (eskiEtiket) {
-    const eskiCihaz = cihazlar.find(c => c.etiket === eskiEtiket);
-    if (eskiCihaz) {
-      eskiCihaz.durum = eskiDurum || "KAYIP";
-      eskiCihaz.isim = "KONTROL MERKEZİ";
-      fetch(GOOGLE_SHEET_POST, {
-        method: "POST",
-        body: JSON.stringify(eskiCihaz)
-      });
-    }
-  }
+  const isim = document.getElementById("yeniIsim").value.trim();
+  const soyisim = document.getElementById("yeniSoyisim").value.trim();
+  if (!yeniEtiket || !isim || !soyisim) return alert("Etiket, isim ve soyisim zorunludur.");
 
   let cihaz = cihazlar.find(c => c.etiket === yeniEtiket);
   if (cihaz) {
     cihaz.isim = isim;
+    cihaz.soyisim = soyisim;
     cihaz.durum = "AKTİF";
   } else {
-    cihaz = { etiket: yeniEtiket, isim, durum: "AKTİF" };
+    cihaz = { etiket: yeniEtiket, isim, soyisim, durum: "AKTİF" };
     cihazlar.push(cihaz);
   }
-
   verileriKaydet();
   listele();
+  document.getElementById("yeniEtiket").value = "";
+  document.getElementById("yeniIsim").value = "";
+  document.getElementById("yeniSoyisim").value = "";
+  document.getElementById("eskiEtiket").value = "";
+  document.getElementById("eskiDurum").value = "";
+  document.getElementById("personelBilgi").textContent = "✅ Personelin cihazı değiştirildi.";
+
   ozetGuncelle();
-  logEkle(`${isim} kişisine ${yeniEtiket} etiketi atandı.`);
   fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(cihaz)
@@ -246,11 +210,14 @@ function cihaziTamirEt() {
   const cihaz = cihazlar.find(c => c.etiket === etiket);
   if (!cihaz) return alert("Etiket bulunamadı.");
   cihaz.durum = "SAĞLAM";
-  cihaz.isim = "KONTROL MERKEZİ";
+  cihaz.isim = "KONTROL";
+  cihaz.soyisim = "MERKEZİ";
   verileriKaydet();
   listele();
+  document.getElementById("tamirEtiket").value = "";
+  document.getElementById("tamirBilgi").textContent = "✅ Cihaz tamir edildi.";
+
   ozetGuncelle();
-  logEkle(`${etiket} etiketiyle cihaz SAĞLAM yapıldı.`);
   fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(cihaz)
@@ -263,27 +230,58 @@ function ayrilaniPasiflestir() {
   const cihaz = cihazlar.find(c => c.etiket === etiket);
   if (!cihaz) return alert("Etiket bulunamadı.");
   cihaz.durum = yeniDurum;
-  cihaz.isim = "KONTROL MERKEZİ";
+  cihaz.isim = "KONTROL";
+  cihaz.soyisim = "MERKEZİ";
   verileriKaydet();
   listele();
+  document.getElementById("ayrilanEtiket").value = "";
+  document.getElementById("ayrilanDurum").value = "SAĞLAM";
+  let mesaj = "✅ Cihaz teslim alındı.";
+  if (cihaz.durum === "ARIZALI") mesaj = "🔧 Cihaz arızalı teslim alındı.";
+  else if (cihaz.durum === "SAĞLAM") mesaj = "✅ Cihaz sağlam teslim alındı.";
+  document.getElementById("ayrilanBilgi").textContent = mesaj;
+
   ozetGuncelle();
-  logEkle(`${etiket} etiketiyle cihaz ${yeniDurum} yapıldı.`);
   fetch(GOOGLE_SHEET_POST, {
     method: "POST",
     body: JSON.stringify(cihaz)
   });
 }
 
-function disaAktar() {
-  let csv = "Etiket,İsim,Durum\n";
+function ozetGuncelle() {
+  const ozet = document.getElementById("durumOzetTablo").querySelector("tbody");
+  const sayim = {};
   cihazlar.forEach(c => {
-    csv += `${c.etiket},${c.isim},${c.durum}\n`;
+    sayim[c.durum] = (sayim[c.durum] || 0) + 1;
   });
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "tag_cihaz_listesi.csv";
-  link.click();
+  ozet.innerHTML = "";
+  for (const durum in sayim) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${durum}</td><td>${sayim[durum]}</td>`;
+    ozet.appendChild(tr);
+  }
+}
+
+function grafikCiz() {
+  const ctx = document.getElementById('grafikCanvas');
+  if (!ctx) return;
+  const sayim = {};
+  cihazlar.forEach(c => {
+    sayim[c.durum] = (sayim[c.durum] || 0) + 1;
+  });
+  const labels = Object.keys(sayim);
+  const data = Object.values(sayim);
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Cihaz Sayısı',
+        data: data,
+        backgroundColor: '#ef4444'
+      }]
+    }
+  });
 }
 </script></body>
 </html>
